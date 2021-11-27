@@ -12,19 +12,28 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 //path module
 const path = require('path');
 
-const csvWriter = createCsvWriter({
-    path: path.resolve(__dirname,'../','static','owners.csv'),
-    header: [
-        {id: 'owner', title: 'Token_Owner'},
-        {id: 'address', title: 'Mint_Address'}
-    ],
-    append:false
-});
+
+function waitforme(milisec) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, milisec);
+    })
+}
 
 
 
 //function to fetch all the owners
 module.exports = async (req,res) => {
+
+
+    const csvWriter = createCsvWriter({
+        path: path.resolve(__dirname,'../','static','owners.csv'),
+        header: [
+            {id: 'owner', title: 'Token_Owner'},
+            {id: 'address', title: 'Mint_Address'}
+        ],
+        append:false
+    });
+
 
     let owners = [];
 
@@ -59,14 +68,13 @@ module.exports = async (req,res) => {
             ],
         };
 
+        //add delay of 1 second
+       await  waitforme(1000);
+
         //getting parsed program accounts
         let txs = await connection.getParsedProgramAccounts(new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"), config1);
 
 
-
-
-        /*  console.log(txs[0].account.data.parsed.info.tokenAmount.amount);
-          console.log(txs[0].account.data.parsed.info.owner);*/
 
         for(let j=0; j< txs.length;j++){
 

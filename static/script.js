@@ -1,6 +1,22 @@
 
 async function getOwners(){
 
+   document.getElementById('bar').style.display='block';
+
+    const elem = document.getElementById("myBar");
+    let width = 1;
+    const id = setInterval(frame, 3000);
+
+    function frame() {
+        if (width >= 100) {
+            clearInterval(id);
+            document.getElementById('link').style.display='block';
+        } else {
+            width++;
+            elem.style.width = width + '%';
+            elem.innerHTML = width * 1  + '%';
+        }
+    }
     let text='';
 
     //get multiple values
@@ -36,7 +52,7 @@ async function getOwners(){
             }
         }
         text += `The total accounts which minted the token ${token[k]} are ${count}` +"<br>";
-        document.getElementById('mint').innerHTML = text;
+       // document.getElementById('mint').innerHTML = text;
     }
 
 }

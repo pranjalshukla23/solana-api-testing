@@ -21,6 +21,12 @@ section.details_main_section {
     margin-top: 20px;
     text-transform: uppercase;
 }
+.inputformparent #link{
+
+    display: none;
+    color:white
+
+}
 .inputformparent input {
   width: 100%;
   padding: 10px;

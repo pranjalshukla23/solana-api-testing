@@ -12,19 +12,25 @@ const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 //path module
 const path = require('path');
 
-const csvWriter = createCsvWriter({
-    path: path.resolve(__dirname,'../','static','tokens.csv'),
-    header: [
-        {id: 'wallet', title: 'Wallet_Address'},
-        {id: 'token', title: 'Token_Address'}
-    ],
-    append:false
-});
-
+function waitforme(milisec) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, milisec);
+    })
+}
 
 
 //function to fetch all the owners
 module.exports = async (req,res) => {
+
+    const csvWriter = createCsvWriter({
+        path: path.resolve(__dirname,'../','static','tokens.csv'),
+        header: [
+            {id: 'wallet', title: 'Wallet_Address'},
+            {id: 'token', title: 'Token_Address'}
+        ],
+        append:false
+    });
+
 
     let tokens = [];
 
@@ -54,6 +60,8 @@ module.exports = async (req,res) => {
                 }
             ],
         };
+
+        await waitforme(2000);
 
         //getting parsed program accounts
         let txs = await connection.getParsedProgramAccounts(new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'), config1);

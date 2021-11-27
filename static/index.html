@@ -12,6 +12,7 @@
             crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body>
@@ -63,6 +64,11 @@
     </section>
 
     <section class="details_main_section">
+        <div id="bar" class="w3-container" style="display: none">
+            <div class="w3-light-grey">
+                <div id="myBar" class="w3-container w3-green w3-center" style="width:1%">1%</div>
+            </div>
+        </div>
         <div class="container">
             <div class="inputformparent">
                 <p class="heading">Token address</p>
@@ -75,8 +81,11 @@
                     />
                 </div>
 
-                <button class="submit" onclick="getOwners()">Get Owners</button>
-                <a download href="owners.csv" >Download CSV</a>
+                <button  class="submit" onclick="getOwners()">Get Owners</button>
+                <div class="link" id="link">
+                    <a download href="owners.csv" >Download CSV</a>
+                </div>
+
                 <div class="details">
                     <p class="mint" id="mint"></p>
 
@@ -98,12 +107,15 @@
     solanaMain.addEventListener('click', function() {
         main.style.background="#000";
         document.querySelector('.dropbtn').textContent="Solana(Main)"
+
     })
     solanaDev.addEventListener('click', function() {
         main.style.background="#000022";
-        document.querySelector('.dropbtn').textContent="Solana(Dev)"
+        document.querySelector('.dropbtn').textContent="Solana(Dev)";
 
-    })
+    });
+
+
 </script>
 
 
